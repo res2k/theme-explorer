@@ -29,19 +29,9 @@
 #define DB_DEFINE_CLASS(name, parts)                     { _T(#name), NULL, parts, TE_ARRAY_SIZE(parts) }
 #define DB_DEFINE_SUBCLASS(name, subname, parts)         { _T(#name), _T(#subname), parts, TE_ARRAY_SIZE(parts) }
 #define DB_DEFINE_PART(id, name, display_name, states)   { id, _T(#name), _T(#display_name), states, TE_ARRAY_SIZE(states) }
+#define DB_DEFINE_PART_EMPTY(id, name, display_name)     { id, _T(#name), _T(#display_name), 0, 0 }
 #define DB_DEFINE_STATE(id, name, display_name)          { id, _T(#name), _T(#display_name) }
 
-
-
-/***************
- *** Dummies ***
- ***************/
-
-static const db_state_t db_states_EMPTY[] = {
-};
-
-static const db_part_t db_parts_EMPTY[] = {
-};
 
 
 /******************
@@ -81,8 +71,8 @@ static const db_part_t db_parts_AEROWIZARD[] = {
     DB_DEFINE_PART(1,  AW_TITLEBAR,     TitleBar,     db_states_AW_TITLEBAR),
     DB_DEFINE_PART(2,  AW_HEADERAREA,   HeaderArea,   db_states_AW_HEADERAREA),
     DB_DEFINE_PART(3,  AW_CONTENTAREA,  ContentArea,  db_states_AW_CONTENTAREA),
-    DB_DEFINE_PART(4,  AW_COMMANDAREA,  CommandArea,  db_states_EMPTY),
-    DB_DEFINE_PART(5,  AW_BUTTON,       Button,       db_states_EMPTY),  /* TODO: try like button */
+    DB_DEFINE_PART_EMPTY(4,  AW_COMMANDAREA,  CommandArea),
+    DB_DEFINE_PART_EMPTY(5,  AW_BUTTON,       Button),  /* TODO: try like button */
 };
 
 
@@ -160,7 +150,7 @@ static const db_part_t db_parts_BUTTON[] = {
     DB_DEFINE_PART(2,  BP_RADIOBUTTON,       RadioButton,       db_states_BP_RADIOBUTTON),
     DB_DEFINE_PART(3,  BP_CHECKBOX,          CheckBox,          db_states_BP_CHECKBOX),
     DB_DEFINE_PART(4,  BP_GROUPBOX,          GroupBox,          db_states_BP_GROUPBOX),
-    DB_DEFINE_PART(5,  BP_USERBUTTON,        UserButton,        db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY(5,  BP_USERBUTTON,        UserButton),
     DB_DEFINE_PART(6,  BP_COMMANDLINK,       CommandLink,       db_states_BP_COMMANDLINK),
     DB_DEFINE_PART(7,  BP_COMMANDLINKGLYPH,  CommandLinkGlyph,  db_states_BP_COMMANDLINKGLYPH)
 };
@@ -229,8 +219,8 @@ static const db_state_t db_states_CP_CUEBANNER[] = {
 
 static const db_part_t db_parts_COMBOBOX[] = {
 	DB_DEFINE_PART(1,  CP_DROPDOWNBUTTON,         DropDownButton,         db_states_CP_DROPDOWNBUTTON),
-	DB_DEFINE_PART(2,  CP_BACKGROUND,             Background,             db_states_EMPTY),
-	DB_DEFINE_PART(3,  CP_TRANSPARENTBACKGROUND,  TransparentBackground,  db_states_EMPTY),
+	DB_DEFINE_PART_EMPTY(2,  CP_BACKGROUND,             Background),
+	DB_DEFINE_PART_EMPTY(3,  CP_TRANSPARENTBACKGROUND,  TransparentBackground),
 	DB_DEFINE_PART(4,  CP_BORDER,                 Border,                 db_states_CP_BORDER),
 	DB_DEFINE_PART(5,  CP_READONLY,               ReadOnly,               db_states_CP_READONLY),
 	DB_DEFINE_PART(6,  CP_DROPDOWNBUTTONRIGHT,    DropDownButtonRight,    db_states_CP_DROPDOWNBUTTONRIGHT),
@@ -285,25 +275,25 @@ static const db_state_t db_states_CPANEL_SECTIONTITLELINK[] = {
 };
 
 static const db_part_t db_parts_CONTROLPANEL[] = {
-	DB_DEFINE_PART(1,  CPANEL_NAVIGATIONPANE,       NavigationPane,       db_states_EMPTY),
-	DB_DEFINE_PART(2,  CPANEL_CONTENTPANE,          ContentPane,          db_states_EMPTY),
-	DB_DEFINE_PART(3,  CPANEL_NAVIGATIONPANELABEL,  NavigationPaneLabel,  db_states_EMPTY),
-	DB_DEFINE_PART(4,  CPANEL_CONTENTPANELABEL,     ContentPaneLabel,     db_states_EMPTY),
-	DB_DEFINE_PART(5,  CPANEL_TITLE,                Title,                db_states_EMPTY),
-	DB_DEFINE_PART(6,  CPANEL_BODYTEXT,             BodyText,             db_states_EMPTY),
+	DB_DEFINE_PART_EMPTY(1,  CPANEL_NAVIGATIONPANE,       NavigationPane),
+	DB_DEFINE_PART_EMPTY(2,  CPANEL_CONTENTPANE,          ContentPane),
+	DB_DEFINE_PART_EMPTY(3,  CPANEL_NAVIGATIONPANELABEL,  NavigationPaneLabel),
+	DB_DEFINE_PART_EMPTY(4,  CPANEL_CONTENTPANELABEL,     ContentPaneLabel),
+	DB_DEFINE_PART_EMPTY(5,  CPANEL_TITLE,                Title),
+	DB_DEFINE_PART_EMPTY(6,  CPANEL_BODYTEXT,             BodyText),
 	DB_DEFINE_PART(7,  CPANEL_HELPLINK,             HelpLink,             db_states_CPANEL_HELPLINK),
 	DB_DEFINE_PART(8,  CPANEL_TASKLINK,             TaskLink,             db_states_CPANEL_TASKLINK),
-	DB_DEFINE_PART(9,  CPANEL_GROUPTEXT,            GroupText,            db_states_EMPTY),
+	DB_DEFINE_PART_EMPTY(9,  CPANEL_GROUPTEXT,            GroupText),
 	DB_DEFINE_PART(10, CPANEL_CONTENTLINK,          ContentLink,          db_states_CPANEL_CONTENTLINK),
 	DB_DEFINE_PART(11, CPANEL_SECTIONTITLELINK,     SectionTitleLink,     db_states_CPANEL_SECTIONTITLELINK),
-	DB_DEFINE_PART(12, CPANEL_LARGECOMMANDAREA,     LargeCommandArea,     db_states_EMPTY),
-	DB_DEFINE_PART(13, CPANEL_SMALLCOMMANDAREA,     SmallCommandArea,     db_states_EMPTY),
-	DB_DEFINE_PART(14, CPANEL_BUTTON,               Button,               db_states_EMPTY),
-	DB_DEFINE_PART(15, CPANEL_MESSAGETEXT,          MessageText,          db_states_EMPTY),
-	DB_DEFINE_PART(16, CPANEL_NAVIGATIONPANELINE,   NavigationPaneLine,   db_states_EMPTY),
-	DB_DEFINE_PART(17, CPANEL_CONTENTPANELINE,      ContentPaneline,      db_states_EMPTY),
-	DB_DEFINE_PART(18, CPANEL_BANNERAREA,           BannerArea,           db_states_EMPTY),
-	DB_DEFINE_PART(19, CPANEL_BODYTITLE,            BodyTitle,            db_states_EMPTY)
+	DB_DEFINE_PART_EMPTY(12, CPANEL_LARGECOMMANDAREA,     LargeCommandArea),
+	DB_DEFINE_PART_EMPTY(13, CPANEL_SMALLCOMMANDAREA,     SmallCommandArea),
+	DB_DEFINE_PART_EMPTY(14, CPANEL_BUTTON,               Button),
+	DB_DEFINE_PART_EMPTY(15, CPANEL_MESSAGETEXT,          MessageText),
+	DB_DEFINE_PART_EMPTY(16, CPANEL_NAVIGATIONPANELINE,   NavigationPaneLine),
+	DB_DEFINE_PART_EMPTY(17, CPANEL_CONTENTPANELINE,      ContentPaneline),
+	DB_DEFINE_PART_EMPTY(18, CPANEL_BANNERAREA,           BannerArea),
+	DB_DEFINE_PART_EMPTY(19, CPANEL_BODYTITLE,            BodyTitle)
 };
 
 
@@ -379,8 +369,8 @@ static const db_part_t db_parts_DRAGDROP[] = {
     DB_DEFINE_PART(4,  DD_CREATELINK,      CreateLink,      db_states_DD_CREATELINK),
     DB_DEFINE_PART(5,  DD_WARNING,         Warning,         db_states_DD_WARNING),
     DB_DEFINE_PART(6,  DD_NONE,            None,            db_states_DD_NONE),
-    DB_DEFINE_PART(7,  DD_IMAGEBG,         ImageBg,         db_states_EMPTY),
-    DB_DEFINE_PART(8,  DD_TEXTBG,          TextBg,          db_states_EMPTY)
+    DB_DEFINE_PART_EMPTY(7,  DD_IMAGEBG,         ImageBg),
+    DB_DEFINE_PART_EMPTY(8,  DD_TEXTBG,          TextBg)
 };
 
 
@@ -445,9 +435,9 @@ static const db_state_t db_states_EP_EDITBORDER_HVSCROLL[] = {
 
 static const db_part_t db_parts_EDIT[] = {
     DB_DEFINE_PART(1,  EP_EDITTEXT,              EditText,              db_states_EP_EDITTEXT),
-    DB_DEFINE_PART(2,  EP_CARET,                 Caret,                 db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY(2,  EP_CARET,                 Caret),
     DB_DEFINE_PART(3,  EP_BACKGROUND,            Background,            db_states_EP_BACKGROUND),
-    DB_DEFINE_PART(4,  EP_PASSWORD,              Password,              db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY(4,  EP_PASSWORD,              Password),
     DB_DEFINE_PART(5,  EP_BACKGROUNDWITHBORDER,  BackgroundWithBorder,  db_states_EP_BACKGROUNDWITHBORDER),
     DB_DEFINE_PART(6,  EP_EDITBORDER_NOSCROLL,   EditBorder_NoScroll,   db_states_EP_EDITBORDER_NOSCROLL),
     DB_DEFINE_PART(7,  EP_EDITBORDER_HSCROLL,    EditBorder_HScroll,    db_states_EP_EDITBORDER_HSCROLL),
@@ -520,18 +510,18 @@ static const db_state_t db_states_EBP_SPECIALGROUPEXPAND[] = {
 };
 
 static const db_part_t db_parts_EXPLORERBAR[] = {
-    DB_DEFINE_PART( 1,  EBP_HEADERBACKGROUND,        HeaderBackground,        db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY( 1,  EBP_HEADERBACKGROUND,        HeaderBackground),
     DB_DEFINE_PART( 2,  EBP_HEADERCLOSE,             HeaderClose,             db_states_EBP_HEADERCLOSE),
     DB_DEFINE_PART( 3,  EBP_HEADERPIN,               HeaderPin,               db_states_EBP_HEADERPIN),
     DB_DEFINE_PART( 4,  EBP_IEBARMENU,               HeaderIEBarMenu,         db_states_EBP_IEBARMENU),
-    DB_DEFINE_PART( 5,  EBP_NORMALGROUPBACKGROUND,   NormalGroupBackground,   db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY( 5,  EBP_NORMALGROUPBACKGROUND,   NormalGroupBackground),
     DB_DEFINE_PART( 6,  EBP_NORMALGROUPCOLLAPSE,     NormalGroupCollapse,     db_states_EBP_NORMALGROUPCOLLAPSE),
     DB_DEFINE_PART( 7,  EBP_NORMALGROUPEXPAND,       NormalGroupExpand,       db_states_EBP_NORMALGROUPEXPAND),
-    DB_DEFINE_PART( 8,  EBP_NORMALGROUPHEAD,         NormalGroupHead,         db_states_EMPTY),
-    DB_DEFINE_PART( 9,  EBP_SPECIALGROUPBACKGROUND,  SpecialGroupBackground,  db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY( 8,  EBP_NORMALGROUPHEAD,         NormalGroupHead),
+    DB_DEFINE_PART_EMPTY( 9,  EBP_SPECIALGROUPBACKGROUND,  SpecialGroupBackground),
     DB_DEFINE_PART(10,  EBP_SPECIALGROUPCOLLAPSE,    SpecialGroupCollapse,    db_states_EBP_SPECIALGROUPCOLLAPSE),
     DB_DEFINE_PART(11,  EBP_SPECIALGROUPEXPAND,      SpecialGroupExpand,      db_states_EBP_SPECIALGROUPEXPAND),
-    DB_DEFINE_PART(12,  EBP_SPECIALGROUPHEAD,        SpecialGroupHead,        db_states_EMPTY)
+    DB_DEFINE_PART_EMPTY(12,  EBP_SPECIALGROUPHEAD,        SpecialGroupHead)
 };
 
 
@@ -562,13 +552,13 @@ static const db_state_t db_states_FLYOUT_LINKHEADER[] = {
 };
 
 static const db_part_t db_parts_FLYOUT[] = {
-    DB_DEFINE_PART(1,  FLYOUT_HEADER,      Header,      db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY(1,  FLYOUT_HEADER,      Header),
     DB_DEFINE_PART(2,  FLYOUT_BODY,        Body,        db_states_FLYOUT_BODY),
     DB_DEFINE_PART(3,  FLYOUT_LABEL,       Label,       db_states_FLYOUT_LABEL),
     DB_DEFINE_PART(4,  FLYOUT_LINK,        Link,        db_states_FLYOUT_LINK),
-    DB_DEFINE_PART(5,  FLYOUT_DIVIDER,     Divider,     db_states_EMPTY),
-    DB_DEFINE_PART(6,  FLYOUT_WINDOW,      Window,      db_states_EMPTY),
-    DB_DEFINE_PART(7,  FLYOUT_LINKAREA,    LinkArea,    db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY(5,  FLYOUT_DIVIDER,     Divider),
+    DB_DEFINE_PART_EMPTY(6,  FLYOUT_WINDOW,      Window),
+    DB_DEFINE_PART_EMPTY(7,  FLYOUT_LINKAREA,    LinkArea),
     DB_DEFINE_PART(8,  FLYOUT_LINKHEADER,  LinkHeader,  db_states_FLYOUT_LINKHEADER),
 };
 
@@ -795,15 +785,15 @@ static const db_state_t db_states_LVP_COLLAPSEBUTTON[] = {
 
 static const db_part_t db_parts_LISTVIEW[] = {
     DB_DEFINE_PART( 1,  LVP_LISTITEM,          ListItem,          db_states_LVP_LISTITEM),
-    DB_DEFINE_PART( 2,  LVP_LISTGROUP,         ListGroup,         db_states_EMPTY),
-    DB_DEFINE_PART( 3,  LVP_LISTDETAIL,        ListDetail,        db_states_EMPTY),
-    DB_DEFINE_PART( 4,  LVP_LISTSORTEDDETAIL,  ListSortedDetail,  db_states_EMPTY),
-    DB_DEFINE_PART( 5,  LVP_EMPTYTEXT,         EmptyText,         db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY( 2,  LVP_LISTGROUP,         ListGroup),
+    DB_DEFINE_PART_EMPTY( 3,  LVP_LISTDETAIL,        ListDetail),
+    DB_DEFINE_PART_EMPTY( 4,  LVP_LISTSORTEDDETAIL,  ListSortedDetail),
+    DB_DEFINE_PART_EMPTY( 5,  LVP_EMPTYTEXT,         EmptyText),
     DB_DEFINE_PART( 6,  LVP_GROUPHEADER,       GroupHeader,       db_states_LVP_GROUPHEADER),
     DB_DEFINE_PART( 7,  LVP_GROUPHEADERLINE,   GroupHeaderLine,   db_states_LVP_GROUPHEADERLINE),
     DB_DEFINE_PART( 8,  LVP_EXPANDBUTTON,      ExpandButton,      db_states_LVP_EXPANDBUTTON),
     DB_DEFINE_PART( 9,  LVP_COLLAPSEBUTTON,    CollapseButton,    db_states_LVP_COLLAPSEBUTTON),
-    DB_DEFINE_PART(10,  LVP_COLUMNDETAIL,      ColumnDetail,      db_states_EMPTY)
+    DB_DEFINE_PART_EMPTY(10,  LVP_COLUMNDETAIL,      ColumnDetail)
 };
 
 
@@ -871,21 +861,21 @@ static const db_state_t db_states_MENU_SYSTEMRESTORE[] = {
 };
 
 static const db_part_t db_parts_MENU[] = {
-    DB_DEFINE_PART( 1,  MENU_MENUITEM_TMSCHEMA,         MenuItem,              db_states_EMPTY),
-    DB_DEFINE_PART( 2,  MENU_MENUDROPDOWN_TMSCHEMA,     MenuDropDown,          db_states_EMPTY),
-    DB_DEFINE_PART( 3,  MENU_MENUBARITEM_TMSCHEMA,      MenuBarItem,           db_states_EMPTY),
-    DB_DEFINE_PART( 4,  MENU_MENUBARDROPDOWN_TMSCHEMA,  MenuBarDropDown,       db_states_EMPTY),
-    DB_DEFINE_PART( 5,  MENU_CHEVRON_TMSCHEMA,          Chevron,               db_states_EMPTY),
-    DB_DEFINE_PART( 6,  MENU_SEPARATOR_TMSCHEMA,        Separator,             db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY( 1,  MENU_MENUITEM_TMSCHEMA,         MenuItem),
+    DB_DEFINE_PART_EMPTY( 2,  MENU_MENUDROPDOWN_TMSCHEMA,     MenuDropDown),
+    DB_DEFINE_PART_EMPTY( 3,  MENU_MENUBARITEM_TMSCHEMA,      MenuBarItem),
+    DB_DEFINE_PART_EMPTY( 4,  MENU_MENUBARDROPDOWN_TMSCHEMA,  MenuBarDropDown),
+    DB_DEFINE_PART_EMPTY( 5,  MENU_CHEVRON_TMSCHEMA,          Chevron),
+    DB_DEFINE_PART_EMPTY( 6,  MENU_SEPARATOR_TMSCHEMA,        Separator),
     DB_DEFINE_PART( 7,  MENU_BARBACKGROUND,             BarBackground,         db_states_MENU_BARBACKGROUND),
     DB_DEFINE_PART( 8,  MENU_BARITEM,                   BarItem,               db_states_MENU_BARITEM),
-    DB_DEFINE_PART( 9,  MENU_POPUPBACKGROUND,           PopupBackground,       db_states_EMPTY),
-    DB_DEFINE_PART(10,  MENU_POPUPBORDERS,              PopupBorders,          db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY( 9,  MENU_POPUPBACKGROUND,           PopupBackground),
+    DB_DEFINE_PART_EMPTY(10,  MENU_POPUPBORDERS,              PopupBorders),
     DB_DEFINE_PART(11,  MENU_POPUPCHECK,                PopupCheck,            db_states_MENU_POPUPCHECK),
     DB_DEFINE_PART(12,  MENU_POPUPCHECKBACKGROUND,      PopupCheckBackground,  db_states_MENU_POPUPCHECKBACKGROUND),
-    DB_DEFINE_PART(13,  MENU_POPUPGUTTER,               PopupGutter,           db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY(13,  MENU_POPUPGUTTER,               PopupGutter),
     DB_DEFINE_PART(14,  MENU_POPUPITEM,                 PopupItem,             db_states_MENU_POPUPITEM),
-    DB_DEFINE_PART(15,  MENU_POPUPSEPARATOR,            PopupSeparator,        db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY(15,  MENU_POPUPSEPARATOR,            PopupSeparator),
     DB_DEFINE_PART(16,  MENU_POPUPSUBMENU,              PopupSubMenu,          db_states_MENU_POPUPSUBMENU),
     DB_DEFINE_PART(17,  MENU_SYSTEMCLOSE,               SystemClose,           db_states_MENU_SYSTEMCLOSE),
     DB_DEFINE_PART(18,  MENU_SYSTEMMAXIMIZE,            SystemMaximize,        db_states_MENU_SYSTEMMAXIMIZE),
@@ -909,7 +899,7 @@ static const db_state_t db_states_MDP_NEWAPPBUTTON[] = {
 
 static const db_part_t db_parts_MENUBAND[] = {
     DB_DEFINE_PART(1,  MDP_NEWAPPBUTTON,  NewAppButton,  db_states_MDP_NEWAPPBUTTON),
-    DB_DEFINE_PART(2,  MDP_SEPERATOR,     Separator,     db_states_EMPTY)
+    DB_DEFINE_PART_EMPTY(2,  MDP_SEPERATOR,     Separator)
 };
 
 
@@ -966,10 +956,10 @@ static const db_state_t db_states_MC_NAVPREV[] = {
 };
 
 static const db_part_t db_parts_MONTHCAL[] = {
-    DB_DEFINE_PART( 1,  MC_BACKGROUND,             Background,             db_states_EMPTY),
-    DB_DEFINE_PART( 2,  MC_BORDERS,                Borders,                db_states_EMPTY),
-    DB_DEFINE_PART( 3,  MC_GRIDBACKGROUND,         GridBackground,         db_states_EMPTY),
-    DB_DEFINE_PART( 4,  MC_COLHEADERSPLITTER,      ColheaderSplitter,      db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY( 1,  MC_BACKGROUND,             Background),
+    DB_DEFINE_PART_EMPTY( 2,  MC_BORDERS,                Borders),
+    DB_DEFINE_PART_EMPTY( 3,  MC_GRIDBACKGROUND,         GridBackground),
+    DB_DEFINE_PART_EMPTY( 4,  MC_COLHEADERSPLITTER,      ColheaderSplitter),
     DB_DEFINE_PART( 5,  MC_GRIDCELLBACKGROUND,     GridCellBackground,     db_states_MC_GRIDCELLBACKGROUND),
     DB_DEFINE_PART( 6,  MC_GRIDCELL,               GridCell,               db_states_MC_GRIDCELL),
     DB_DEFINE_PART( 7,  MC_GRIDCELLUPPER,          GridCellUpper,          db_states_MC_GRIDCELLUPPER),
@@ -1081,16 +1071,16 @@ static const db_state_t db_states_PP_TRANSPARENTBARVERT[] = {
 };
 
 static const db_part_t db_parts_PROGRESS[] = {
-    DB_DEFINE_PART( 1,  PP_BAR,                 Bar,                 db_states_EMPTY),
-    DB_DEFINE_PART( 2,  PP_BARVERT,             BarVert,             db_states_EMPTY),
-    DB_DEFINE_PART( 3,  PP_CHUNK,               Chunk,               db_states_EMPTY),
-    DB_DEFINE_PART( 4,  PP_CHUNKVERT,           ChunkVert,           db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY( 1,  PP_BAR,                 Bar),
+    DB_DEFINE_PART_EMPTY( 2,  PP_BARVERT,             BarVert),
+    DB_DEFINE_PART_EMPTY( 3,  PP_CHUNK,               Chunk),
+    DB_DEFINE_PART_EMPTY( 4,  PP_CHUNKVERT,           ChunkVert),
     DB_DEFINE_PART( 5,  PP_FILL,                Fill,                db_states_PP_FILL),
     DB_DEFINE_PART( 6,  PP_FILLVERT,            FillVert,            db_states_PP_FILLVERT),
-    DB_DEFINE_PART( 7,  PP_PULSEOVERLAY,        PulseOverlay,        db_states_EMPTY),
-    DB_DEFINE_PART( 8,  PP_MOVEOVERLAY,         MoveOverlay,         db_states_EMPTY),
-    DB_DEFINE_PART( 9,  PP_PULSEOVERLAYVERT,    PulseOverlayVert,    db_states_EMPTY),
-    DB_DEFINE_PART(10,  PP_MOVEOVERLAYVERT,     MoveOverlayVert,     db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY( 7,  PP_PULSEOVERLAY,        PulseOverlay),
+    DB_DEFINE_PART_EMPTY( 8,  PP_MOVEOVERLAY,         MoveOverlay),
+    DB_DEFINE_PART_EMPTY( 9,  PP_PULSEOVERLAYVERT,    PulseOverlayVert),
+    DB_DEFINE_PART_EMPTY(10,  PP_MOVEOVERLAYVERT,     MoveOverlayVert),
     DB_DEFINE_PART(11,  PP_TRANSPARENTBAR,      TransparentBar,      db_states_PP_TRANSPARENTBAR),
     DB_DEFINE_PART(12,  PP_TRANSPARENTBARVERT,  TransparentBarVert,  db_states_PP_TRANSPARENTBARVERT)
 };
@@ -1125,12 +1115,12 @@ static const db_state_t db_states_RP_SPLITTERVERT[] = {
 };
 
 static const db_part_t db_parts_REBAR[] = {
-    DB_DEFINE_PART(1,  RP_GRIPPER,       Gripper,       db_states_EMPTY),
-    DB_DEFINE_PART(2,  RP_GRIPPERVERT,   GripperVert,   db_states_EMPTY),
-    DB_DEFINE_PART(3,  RP_BAND,          Band,          db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY(1,  RP_GRIPPER,       Gripper),
+    DB_DEFINE_PART_EMPTY(2,  RP_GRIPPERVERT,   GripperVert),
+    DB_DEFINE_PART_EMPTY(3,  RP_BAND,          Band),
     DB_DEFINE_PART(4,  RP_CHEVRON,       Chevron,       db_states_RP_CHEVRON),
     DB_DEFINE_PART(5,  RP_CHEVRONVERT,   ChevronVert,   db_states_RP_CHEVRONVERT),
-    DB_DEFINE_PART(6,  RP_BACKGROUND,    Background,    db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY(6,  RP_BACKGROUND,    Background),
     DB_DEFINE_PART(7,  RP_SPLITTER,      Splitter,      db_states_RP_SPLITTER),
     DB_DEFINE_PART(8,  RP_SPLITTERVERT,  SplitterVert,  db_states_RP_SPLITTERVERT)
 };
@@ -1312,24 +1302,24 @@ static const db_state_t db_states_SPP_MOREPROGRAMSARROWBACK[] = {
 };
 
 static const db_part_t db_parts_STARTPANEL[] = {
-    DB_DEFINE_PART( 1,  SPP_USERPANE,                   UserPane,                   db_states_EMPTY),
-    DB_DEFINE_PART( 2,  SPP_MOREPROGRAMS,               MorePrograms,               db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY( 1,  SPP_USERPANE,                   UserPane),
+    DB_DEFINE_PART_EMPTY( 2,  SPP_MOREPROGRAMS,               MorePrograms),
     DB_DEFINE_PART( 3,  SPP_MOREPROGRAMSARROW,          MoreProgramsArrow,          db_states_SPP_MOREPROGRAMSARROW),
-    DB_DEFINE_PART( 4,  SPP_PROGLIST,                   ProgList,                   db_states_EMPTY),
-    DB_DEFINE_PART( 5,  SPP_PROGLISTSEPARATOR,          ProgListSeparator,          db_states_EMPTY),
-    DB_DEFINE_PART( 6,  SPP_PLACESLIST,                 PlaceList,                  db_states_EMPTY),
-    DB_DEFINE_PART( 7,  SPP_PLACESLISTSEPARATOR,        PlaceListSeparator,         db_states_EMPTY),
-    DB_DEFINE_PART( 8,  SPP_LOGOFF,                     LogOff,                     db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY( 4,  SPP_PROGLIST,                   ProgList),
+    DB_DEFINE_PART_EMPTY( 5,  SPP_PROGLISTSEPARATOR,          ProgListSeparator),
+    DB_DEFINE_PART_EMPTY( 6,  SPP_PLACESLIST,                 PlaceList),
+    DB_DEFINE_PART_EMPTY( 7,  SPP_PLACESLISTSEPARATOR,        PlaceListSeparator),
+    DB_DEFINE_PART_EMPTY( 8,  SPP_LOGOFF,                     LogOff),
     DB_DEFINE_PART( 9,  SPP_LOGOFFBUTTONS,              LogOffButtons,              db_states_SPP_LOGOFFBUTTONS),
-    DB_DEFINE_PART(10,  SPP_USERPICTURE,                UserPicture,                db_states_EMPTY),
-    DB_DEFINE_PART(11,  SPP_PREVIEW,                    Preview,                    db_states_EMPTY),
-    DB_DEFINE_PART(12,  SPP_MOREPROGRAMSTAB,            MoreProgramsTab,            db_states_SPP_MOREPROGRAMSTAB),
-    DB_DEFINE_PART(13,  SPP_NSCHOST,                    NscHost,                    db_states_EMPTY),
-    DB_DEFINE_PART(14,  SPP_SOFTWAREEXPLORER,           SoftwareExplorer,           db_states_SPP_SOFTWAREEXPLORER),
+    DB_DEFINE_PART_EMPTY(10,  SPP_USERPICTURE,                UserPicture),
+    DB_DEFINE_PART_EMPTY(11,  SPP_PREVIEW,                    Preview),
+    DB_DEFINE_PART_EMPTY(12,  SPP_MOREPROGRAMSTAB,            MoreProgramsTab,            db_states_SPP_MOREPROGRAMSTAB),
+    DB_DEFINE_PART_EMPTY(13,  SPP_NSCHOST,                    NscHost),
+    DB_DEFINE_PART_EMPTY(14,  SPP_SOFTWAREEXPLORER,           SoftwareExplorer,           db_states_SPP_SOFTWAREEXPLORER),
     DB_DEFINE_PART(15,  SPP_OPENBOX,                    OpenBox,                    db_states_SPP_OPENBOX),
-    DB_DEFINE_PART(16,  SPP_SEARCHVIEW,                 SearchView,                 db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY(16,  SPP_SEARCHVIEW,                 SearchView),
     DB_DEFINE_PART(17,  SPP_MOREPROGRAMSARROWBACK,      MoreProgramsArrowBack,      db_states_SPP_MOREPROGRAMSARROWBACK),
-    DB_DEFINE_PART(18,  SPP_TOPMATCH,                   TopMatch,                   db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY(18,  SPP_TOPMATCH,                   TopMatch),
     DB_DEFINE_PART(19,  SPP_LOGOFFSPLITBUTTONDROPDOWN,  LogOffSplitButtonDropDown,  db_states_SPP_LOGOFFBUTTONS)
 };
 
@@ -1339,7 +1329,7 @@ static const db_part_t db_parts_STARTPANEL[] = {
  **************/
 
 static const db_part_t db_parts_STATIC[] = {
-    DB_DEFINE_PART(1,  STAT_TEXT,  Text,  db_states_EMPTY)
+    DB_DEFINE_PART_EMPTY(1,  STAT_TEXT,  Text)
 };
 
 
@@ -1348,9 +1338,9 @@ static const db_part_t db_parts_STATIC[] = {
  **************/
 
 static const db_part_t db_parts_STATUS[] = {
-    DB_DEFINE_PART(1,  SP_PANE,         Pane,         db_states_EMPTY),
-    DB_DEFINE_PART(2,  SP_GRIPPERPANE,  GripperPane,  db_states_EMPTY),
-    DB_DEFINE_PART(3,  SP_GRIPPER,      Gripper,      db_states_EMPTY)
+    DB_DEFINE_PART_EMPTY(1,  SP_PANE,         Pane),
+    DB_DEFINE_PART_EMPTY(2,  SP_GRIPPERPANE,  GripperPane),
+    DB_DEFINE_PART_EMPTY(3,  SP_GRIPPER,      Gripper)
 };
 
 
@@ -1431,9 +1421,9 @@ static const db_part_t db_parts_TAB[] = {
     DB_DEFINE_PART( 6,  TABP_TOPTABITEMLEFTEDGE,   TopTabItemLeftEdge,   db_states_TABP_TOPTABITEMLEFTEDGE),
     DB_DEFINE_PART( 7,  TABP_TOPTABITEMRIGHTEDGE,  TopTabItemRightEdge,  db_states_TABP_TOPTABITEMRIGHTEDGE),
     DB_DEFINE_PART( 8,  TABP_TOPTABITEMBOTHEDGE,   TopTabItemBothEdge,   db_states_TABP_TOPTABITEMBOTHEDGE),
-    DB_DEFINE_PART( 9,  TABP_PANE,                 Pane,                 db_states_EMPTY),
-    DB_DEFINE_PART(10,  TABP_BODY,                 Body,                 db_states_EMPTY),
-    DB_DEFINE_PART(11,  TABP_AEROWIZARDBODY,       AeroWizardBody,       db_states_EMPTY)
+    DB_DEFINE_PART_EMPTY( 9,  TABP_PANE,                 Pane),
+    DB_DEFINE_PART_EMPTY(10,  TABP_BODY,                 Body),
+    DB_DEFINE_PART_EMPTY(11,  TABP_AEROWIZARDBODY,       AeroWizardBody)
 };
 
 
@@ -1442,9 +1432,9 @@ static const db_part_t db_parts_TAB[] = {
  ****************/
 
 static const db_part_t db_parts_TASKBAND[] = {
-    DB_DEFINE_PART(1,  TDP_GROUPCOUNT,            GroupCount,            db_states_EMPTY),
-    DB_DEFINE_PART(2,  TDP_FLASHBUTTON,           FlashButton,           db_states_EMPTY),
-    DB_DEFINE_PART(3,  TDP_FLASHBUTTONGROUPMENU,  FlashButtonGroupMenu,  db_states_EMPTY)
+    DB_DEFINE_PART_EMPTY(1,  TDP_GROUPCOUNT,            GroupCount),
+    DB_DEFINE_PART_EMPTY(2,  TDP_FLASHBUTTON,           FlashButton),
+    DB_DEFINE_PART_EMPTY(3,  TDP_FLASHBUTTONGROUPMENU,  FlashButtonGroupMenu)
 };
 
 
@@ -1453,14 +1443,14 @@ static const db_part_t db_parts_TASKBAND[] = {
  ***************/
 
 static const db_part_t db_parts_TASKBAR[] = {
-    DB_DEFINE_PART(1,  TBP_BACKGROUNDBOTTOM,  BackgroundBottom,  db_states_EMPTY),
-    DB_DEFINE_PART(2,  TBP_BACKGROUNDRIGHT,   BackgroundRight,   db_states_EMPTY),
-    DB_DEFINE_PART(3,  TBP_BACKGROUNDTOP,     BackgroundTop,     db_states_EMPTY),
-    DB_DEFINE_PART(4,  TBP_BACKGROUNDLEFT,    BackgroundLeft,    db_states_EMPTY),
-    DB_DEFINE_PART(5,  TBP_SIZINGBARBOTTOM,   SizingBarBottom,   db_states_EMPTY),
-    DB_DEFINE_PART(6,  TBP_SIZINGBARRIGHT,    SizingBarRight,    db_states_EMPTY),
-    DB_DEFINE_PART(7,  TBP_SIZINGBARTOP,      SizingBarTop,      db_states_EMPTY),
-    DB_DEFINE_PART(8,  TBP_SIZINGBARLEFT,     SizingBarLeft,     db_states_EMPTY)
+    DB_DEFINE_PART_EMPTY(1,  TBP_BACKGROUNDBOTTOM,  BackgroundBottom),
+    DB_DEFINE_PART_EMPTY(2,  TBP_BACKGROUNDRIGHT,   BackgroundRight),
+    DB_DEFINE_PART_EMPTY(3,  TBP_BACKGROUNDTOP,     BackgroundTop),
+    DB_DEFINE_PART_EMPTY(4,  TBP_BACKGROUNDLEFT,    BackgroundLeft),
+    DB_DEFINE_PART_EMPTY(5,  TBP_SIZINGBARBOTTOM,   SizingBarBottom),
+    DB_DEFINE_PART_EMPTY(6,  TBP_SIZINGBARRIGHT,    SizingBarRight),
+    DB_DEFINE_PART_EMPTY(7,  TBP_SIZINGBARTOP,      SizingBarTop),
+    DB_DEFINE_PART_EMPTY(8,  TBP_SIZINGBARLEFT,     SizingBarLeft)
 };
 
 
@@ -1482,27 +1472,27 @@ static const db_state_t db_states_TDLG_EXPANDOBUTTON[] = {
 };
 
 static const db_part_t db_parts_TASKDIALOG[] = {
-    DB_DEFINE_PART( 1,  TDLG_PRIMARYPANEL,         PrimaryPanel,         db_states_EMPTY),
-    DB_DEFINE_PART( 2,  TDLG_MAININSTRUCTIONPANE,  MainInstructionPane,  db_states_EMPTY),
-    DB_DEFINE_PART( 3,  TDLG_MAINICON,             MainIcon,             db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY( 1,  TDLG_PRIMARYPANEL,         PrimaryPanel),
+    DB_DEFINE_PART_EMPTY( 2,  TDLG_MAININSTRUCTIONPANE,  MainInstructionPane),
+    DB_DEFINE_PART_EMPTY( 3,  TDLG_MAINICON,             MainIcon),
     DB_DEFINE_PART( 4,  TDLG_CONTENTPANE,          ContentPane,          db_states_TDLG_CONTENTPANE),
-    DB_DEFINE_PART( 5,  TDLG_CONTENTICON,          ContentIcon,          db_states_EMPTY),
-    DB_DEFINE_PART( 6,  TDLG_EXPANDEDCONTENT,      ExpandedContent,      db_states_EMPTY),
-    DB_DEFINE_PART( 7,  TDLG_COMMANDLINKPANE,      CommandLinkPane,      db_states_EMPTY),
-    DB_DEFINE_PART( 8,  TDLG_SECONDARYPANEL,       SecondaryPanel,       db_states_EMPTY),
-    DB_DEFINE_PART( 9,  TDLG_CONTROLPANE,          ControlPane,          db_states_EMPTY),
-    DB_DEFINE_PART(10,  TDLG_BUTTONSECTION,        ButtonSection,        db_states_EMPTY),
-    DB_DEFINE_PART(11,  TDLG_BUTTONWRAPPER,        ButtonWrapper,        db_states_EMPTY),
-    DB_DEFINE_PART(12,  TDLG_EXPANDOTEXT,          ExpandoText,          db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY( 5,  TDLG_CONTENTICON,          ContentIcon),
+    DB_DEFINE_PART_EMPTY( 6,  TDLG_EXPANDEDCONTENT,      ExpandedContent),
+    DB_DEFINE_PART_EMPTY( 7,  TDLG_COMMANDLINKPANE,      CommandLinkPane),
+    DB_DEFINE_PART_EMPTY( 8,  TDLG_SECONDARYPANEL,       SecondaryPanel),
+    DB_DEFINE_PART_EMPTY( 9,  TDLG_CONTROLPANE,          ControlPane),
+    DB_DEFINE_PART_EMPTY(10,  TDLG_BUTTONSECTION,        ButtonSection),
+    DB_DEFINE_PART_EMPTY(11,  TDLG_BUTTONWRAPPER,        ButtonWrapper),
+    DB_DEFINE_PART_EMPTY(12,  TDLG_EXPANDOTEXT,          ExpandoText),
     DB_DEFINE_PART(13,  TDLG_EXPANDOBUTTON,        ExpandoButton,        db_states_TDLG_EXPANDOBUTTON),
-    DB_DEFINE_PART(14,  TDLG_VERIFICATIONTEXT,     VerificationText,     db_states_EMPTY),
-    DB_DEFINE_PART(15,  TDLG_FOOTNOTEPANE,         FootnotePane,         db_states_EMPTY),
-    DB_DEFINE_PART(16,  TDLG_FOOTNOTEAREA,         FootnoteArea,         db_states_EMPTY),
-    DB_DEFINE_PART(17,  TDLG_FOOTNOTESEPARATOR,    FootnoteSeparator,    db_states_EMPTY),
-    DB_DEFINE_PART(18,  TDLG_EXPANDEDFOOTERAREA,   ExpandedFootArea,     db_states_EMPTY),
-    DB_DEFINE_PART(19,  TDLG_PROGRESSBAR,          ProgressBar,          db_states_EMPTY),
-    DB_DEFINE_PART(20,  TDLG_IMAGEALIGNMENT,       ImageAlignement,      db_states_EMPTY),
-    DB_DEFINE_PART(21,  TDLG_RADIOBUTTONPANE,      RadioButtonPane,      db_states_EMPTY)
+    DB_DEFINE_PART_EMPTY(14,  TDLG_VERIFICATIONTEXT,     VerificationText),
+    DB_DEFINE_PART_EMPTY(15,  TDLG_FOOTNOTEPANE,         FootnotePane),
+    DB_DEFINE_PART_EMPTY(16,  TDLG_FOOTNOTEAREA,         FootnoteArea),
+    DB_DEFINE_PART_EMPTY(17,  TDLG_FOOTNOTESEPARATOR,    FootnoteSeparator),
+    DB_DEFINE_PART_EMPTY(18,  TDLG_EXPANDEDFOOTERAREA,   ExpandedFootArea),
+    DB_DEFINE_PART_EMPTY(19,  TDLG_PROGRESSBAR,          ProgressBar),
+    DB_DEFINE_PART_EMPTY(20,  TDLG_IMAGEALIGNMENT,       ImageAlignement),
+    DB_DEFINE_PART_EMPTY(21,  TDLG_RADIOBUTTONPANE,      RadioButtonPane)
 };
 
 
@@ -1523,14 +1513,14 @@ static const db_state_t db_states_TEXT_CONTROLLABEL[] = {
 };
 
 static const db_part_t db_parts_TEXTSTYLE[] = {
-    DB_DEFINE_PART(1,  TEXT_MAININSTRUCTION,  MainInstruction,  db_states_EMPTY),
-    DB_DEFINE_PART(2,  TEXT_INSTRUCTION,      Instruction,      db_states_EMPTY),
-    DB_DEFINE_PART(3,  TEXT_BODYTITLE,        BodyTitle,        db_states_EMPTY),
-    DB_DEFINE_PART(4,  TEXT_BODYTEXT,         BodyText,         db_states_EMPTY),
-    DB_DEFINE_PART(5,  TEXT_SECONDARYTEXT,    SecondaryText,    db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY(1,  TEXT_MAININSTRUCTION,  MainInstruction),
+    DB_DEFINE_PART_EMPTY(2,  TEXT_INSTRUCTION,      Instruction),
+    DB_DEFINE_PART_EMPTY(3,  TEXT_BODYTITLE,        BodyTitle),
+    DB_DEFINE_PART_EMPTY(4,  TEXT_BODYTEXT,         BodyText),
+    DB_DEFINE_PART_EMPTY(5,  TEXT_SECONDARYTEXT,    SecondaryText),
     DB_DEFINE_PART(6,  TEXT_HYPERLINKTEXT,    HyperLinkText,    db_states_TEXT_HYPERLINKTEXT),
-    DB_DEFINE_PART(7,  TEXT_EXPANDED,         Expanded,         db_states_EMPTY),
-    DB_DEFINE_PART(8,  TEXT_LABEL,            Label,            db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY(7,  TEXT_EXPANDED,         Expanded),
+    DB_DEFINE_PART_EMPTY(8,  TEXT_LABEL,            Label),
     DB_DEFINE_PART(9,  TEXT_CONTROLLABEL,     ControlLabel,     db_states_TEXT_CONTROLLABEL)
 };
 
@@ -1568,9 +1558,6 @@ static const db_part_t db_parts_TOOLBAR[] = {
 static const db_state_t db_states_TTP_STANDARD[] = {
     DB_DEFINE_STATE(1,  TTSS_NORMAL,  Normal),
     DB_DEFINE_STATE(2,  TTSS_LINK,    Link)
-};
-
-static const db_state_t db_states_TTP_STANDARDTITLE[] = {
 };
 
 static const db_state_t db_states_TTP_BALLOON[] = {
@@ -1697,8 +1684,8 @@ static const db_part_t db_parts_TRACKBAR[] = {
  ******************/
 
 static const db_part_t db_parts_TRAYNOTIFY[] = {
-    DB_DEFINE_PART(1,  TNP_BACKGROUND,      Background,      db_states_EMPTY),
-    DB_DEFINE_PART(2,  TNP_ANIMBACKGROUND,  AnimBackground,  db_states_EMPTY)
+    DB_DEFINE_PART_EMPTY(1,  TNP_BACKGROUND,      Background),
+    DB_DEFINE_PART_EMPTY(2,  TNP_ANIMBACKGROUND,  AnimBackground)
 };
 
 
@@ -1728,7 +1715,7 @@ static const db_state_t db_states_TVP_HOTGLYPH[] = {
 static const db_part_t db_parts_TREEVIEW[] = {
     DB_DEFINE_PART(1,  TVP_TREEITEM,  TreeItem,  db_states_TVP_TREEITEM),
     DB_DEFINE_PART(2,  TVP_GLYPH,     Glyph,     db_states_TVP_GLYPH),
-    DB_DEFINE_PART(3,  TVP_BRANCH,    Branch,    db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY(3,  TVP_BRANCH,    Branch),
     DB_DEFINE_PART(4,  TVP_HOTGLYPH,  HotGlyph,  db_states_TVP_HOTGLYPH)
 };
 
@@ -1837,12 +1824,12 @@ static const db_part_t db_parts_WINDOW[] = {
     DB_DEFINE_PART( 4,  WP_SMALLMINCAPTION,                 SmallMinCaption,                db_states_WP_MINCAPTION),
     DB_DEFINE_PART( 5,  WP_MAXCAPTION,                      MaxCaption,                     db_states_WP_MAXCAPTION),
     DB_DEFINE_PART( 6,  WP_SMALLMAXCAPTION,                 SmallMaxCaption,                db_states_WP_MAXCAPTION),
-    DB_DEFINE_PART( 7,  WP_FRAMELEFT,                       FrameLeft,                      db_states_EMPTY),
-    DB_DEFINE_PART( 8,  WP_FRAMERIGHT,                      FrameRight,                     db_states_EMPTY),
-    DB_DEFINE_PART( 9,  WP_FRAMEBOTTOM,                     FrameBottom,                    db_states_EMPTY),
-    DB_DEFINE_PART(10,  WP_SMALLFRAMELEFT,                  SmallFrameLeft,                 db_states_EMPTY),
-    DB_DEFINE_PART(11,  WP_SMALLFRAMERIGHT,                 SmallFrameRight,                db_states_EMPTY),
-    DB_DEFINE_PART(12,  WP_SMALLFRAMEBOTTOM,                SmallFrameBottom,               db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY( 7,  WP_FRAMELEFT,                       FrameLeft),
+    DB_DEFINE_PART_EMPTY( 8,  WP_FRAMERIGHT,                      FrameRight),
+    DB_DEFINE_PART_EMPTY( 9,  WP_FRAMEBOTTOM,                     FrameBottom),
+    DB_DEFINE_PART_EMPTY(10,  WP_SMALLFRAMELEFT,                  SmallFrameLeft),
+    DB_DEFINE_PART_EMPTY(11,  WP_SMALLFRAMERIGHT,                 SmallFrameRight),
+    DB_DEFINE_PART_EMPTY(12,  WP_SMALLFRAMEBOTTOM,                SmallFrameBottom),
     DB_DEFINE_PART(13,  WP_SYSBUTTON,                       SysButton,                      db_states_WP_SYSBUTTON),
     DB_DEFINE_PART(14,  WP_MDISYSBUTTON,                    MdiSysButton,                   db_states_WP_SYSBUTTON),
     DB_DEFINE_PART(15,  WP_MINBUTTON,                       MinButton,                      db_states_WP_MINBUTTON),
@@ -1859,15 +1846,15 @@ static const db_part_t db_parts_WINDOW[] = {
     DB_DEFINE_PART(26,  WP_HORZTHUMB,                       HorzThumb,                      db_states_WP_HORZTHUMB),
     DB_DEFINE_PART(27,  WP_VERTSCROLL,                      VertScroll,                     db_states_WP_VERTSCROLL),
     DB_DEFINE_PART(28,  WP_VERTTHUMB,                       VertThumb,                      db_states_WP_VERTTHUMB),
-    DB_DEFINE_PART(29,  WP_DIALOG,                          Dialog,                         db_states_EMPTY),
-    DB_DEFINE_PART(30,  WP_CAPTIONSIZINGTEMPLATE,           CaptionSizingTemplate,          db_states_EMPTY),
-    DB_DEFINE_PART(31,  WP_SMALLCAPTIONSIZINGTEMPLATE,      SmallCaptionSizingTemplate,     db_states_EMPTY),
-    DB_DEFINE_PART(32,  WP_FRAMELEFTSIZINGTEMPLATE,         FrameLeftSizingTemplate,        db_states_EMPTY),
-    DB_DEFINE_PART(33,  WP_SMALLFRAMELEFTSIZINGTEMPLATE,    SmallFrameLeftSizingTemplate,   db_states_EMPTY),
-    DB_DEFINE_PART(34,  WP_FRAMERIGHTSIZINGTEMPLATE,        FrameRightSizingTemplate,       db_states_EMPTY),
-    DB_DEFINE_PART(35,  WP_SMALLFRAMERIGHTSIZINGTEMPLATE,   SmallFrameRightSizingTemplate,  db_states_EMPTY),
-    DB_DEFINE_PART(36,  WP_FRAMEBOTTOMSIZINGTEMPLATE,       FrameBottomSizingTemplate,      db_states_EMPTY),
-    DB_DEFINE_PART(37,  WP_SMALLFRAMEBOTTOMSIZINGTEMPLATE,  SmallFrameRightSizingTemplate,  db_states_EMPTY),
+    DB_DEFINE_PART_EMPTY(29,  WP_DIALOG,                          Dialog),
+    DB_DEFINE_PART_EMPTY(30,  WP_CAPTIONSIZINGTEMPLATE,           CaptionSizingTemplate),
+    DB_DEFINE_PART_EMPTY(31,  WP_SMALLCAPTIONSIZINGTEMPLATE,      SmallCaptionSizingTemplate),
+    DB_DEFINE_PART_EMPTY(32,  WP_FRAMELEFTSIZINGTEMPLATE,         FrameLeftSizingTemplate),
+    DB_DEFINE_PART_EMPTY(33,  WP_SMALLFRAMELEFTSIZINGTEMPLATE,    SmallFrameLeftSizingTemplate),
+    DB_DEFINE_PART_EMPTY(34,  WP_FRAMERIGHTSIZINGTEMPLATE,        FrameRightSizingTemplate),
+    DB_DEFINE_PART_EMPTY(35,  WP_SMALLFRAMERIGHTSIZINGTEMPLATE,   SmallFrameRightSizingTemplate),
+    DB_DEFINE_PART_EMPTY(36,  WP_FRAMEBOTTOMSIZINGTEMPLATE,       FrameBottomSizingTemplate),
+    DB_DEFINE_PART_EMPTY(37,  WP_SMALLFRAMEBOTTOMSIZINGTEMPLATE,  SmallFrameRightSizingTemplate),
     DB_DEFINE_PART(38,  WP_FRAME,                           Frame,                          db_states_WP_FRAME)
 };
 
