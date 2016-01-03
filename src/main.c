@@ -206,7 +206,7 @@ main_reset(HWND win, const db_class_t* cls, const db_part_t* part, const db_stat
             SendMessage(lv, LVM_SETITEMCOUNT, db_n_props, 0);
             for(i = 0; i < db_n_props; i++) {
                 const db_prop_t* prop = &db_props[i];
-                PROPERTYORIGIN origin;
+                enum PROPERTYORIGIN origin;
                 TCHAR buffer[256];
 
                 if(prop->id == TS_MIN  ||   prop->id == TS_TRUE  ||  prop->id == TS_DRAW) {

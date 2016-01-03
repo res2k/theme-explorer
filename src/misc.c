@@ -18,6 +18,7 @@
 
 #include "misc.h"
 
+#include <malloc.h>
 
 HINSTANCE te_instance;
 DWORD te_win_version;
