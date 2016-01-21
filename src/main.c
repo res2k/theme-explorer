@@ -222,19 +222,10 @@ main_reset(HWND win, const db_class_t* cls, const db_part_t* part, const db_stat
                 if(origin == PO_NOTFOUND)
                     continue;
 
-                prop->type->to_string(theme, part->id, state->id, prop->id,
-                                      buffer, TE_ARRAY_SIZE(buffer));
-                if(buffer[0] == '\0')
-                    continue;
-
                 item.iSubItem = 0;
                 item.mask = LVIF_TEXT;
                 item.pszText = (TCHAR*) prop->type->display_name;
                 SendMessage(lv, LVM_INSERTITEM, 0, (LPARAM) &item);
-
-                item.iSubItem = 3;
-                item.pszText = buffer;
-                SendMessage(lv, LVM_SETITEM, 0, (LPARAM) &item);
 
                 item.iSubItem = 1;
                 item.mask = LVIF_TEXT;
@@ -244,6 +235,12 @@ main_reset(HWND win, const db_class_t* cls, const db_part_t* part, const db_stat
 
                 item.iSubItem = 2;
                 item.pszText = (TCHAR*) prop->name;
+                SendMessage(lv, LVM_SETITEM, 0, (LPARAM) &item);
+
+                item.iSubItem = 3;
+                item.pszText = buffer;
+                prop->type->to_string(theme, part->id, state->id, prop->id,
+                                      buffer, TE_ARRAY_SIZE(buffer));
                 SendMessage(lv, LVM_SETITEM, 0, (LPARAM) &item);
 
                 item.iSubItem = 4;
