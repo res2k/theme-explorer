@@ -43,8 +43,9 @@
 #define IDC_MAIN_THEMEVIEW_9       513
 #define IDC_MAIN_BITMAP_BKG        514
 #define IDC_MAIN_BITMAP_GLYPH      515
-#define IDC_MAIN_PROPSLIST         516
-#define IDC_MAIN_DUMMY             517
+#define IDC_MAIN_BITMAP_ATLAS      516
+#define IDC_MAIN_PROPSLIST         517
+#define IDC_MAIN_DUMMY             518
 
 #define IDC_MAIN_THEMEVIEW_FIRST      IDC_MAIN_THEMEVIEW_1
 #define IDC_MAIN_THEMEVIEW_LAST       IDC_MAIN_THEMEVIEW_9

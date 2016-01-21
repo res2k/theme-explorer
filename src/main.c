@@ -18,7 +18,7 @@
 
 #include "misc.h"
 #include "db.h"
-
+#include "atlasimage.h"
 
 static void
 main_wm_initdialog(HWND win)
@@ -138,6 +138,8 @@ main_wm_initdialog(HWND win)
 #define GBF_COPY        0x00000002
 static HRESULT (WINAPI* fn_GetThemeBitmap)(HTHEME, int, int, int, ULONG, HBITMAP*);
 
+static HBITMAP last_atlas_bitmap = NULL;
+
 static void
 main_reset(HWND win, const db_class_t* cls, const db_part_t* part, const db_state_t* state)
 {
@@ -165,7 +167,7 @@ main_reset(HWND win, const db_class_t* cls, const db_part_t* part, const db_stat
 
     /* Reset theme preview */
     {
-        HBITMAP bmp;
+        HBITMAP bmp, prev_bitmap;
         int i;
 
         for(i = IDC_MAIN_THEMEVIEW_FIRST; i <= IDC_MAIN_THEMEVIEW_LAST; i++)
@@ -187,7 +189,14 @@ main_reset(HWND win, const db_class_t* cls, const db_part_t* part, const db_stat
             if(FAILED(hr))
                 fn_GetThemeBitmap(theme, part->id, state->id, TMT_GLYPHDIBDATA, GBF_DIRECT, &bmp);
         }
-        SendDlgItemMessage(win, IDC_MAIN_BITMAP_GLYPH, STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)bmp);
+        SendDlgItemMessage (win, IDC_MAIN_BITMAP_GLYPH, STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)bmp);
+
+        bmp = get_atlas_image (theme, part->id, state->id);
+        prev_bitmap = SendDlgItemMessage(win, IDC_MAIN_BITMAP_ATLAS, STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)bmp);
+        if (prev_bitmap == last_atlas_bitmap) prev_bitmap = 0;
+        if (prev_bitmap) DeleteObject (prev_bitmap);
+        if (last_atlas_bitmap) DeleteObject (last_atlas_bitmap);
+        last_atlas_bitmap = bmp;
     }
 
     /* Reset properties */

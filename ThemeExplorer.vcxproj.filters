@@ -30,6 +30,9 @@
     <ClInclude Include="src\themeview.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="atlasimage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\db.c">
@@ -42,6 +45,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\themeview.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\atlasimage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
