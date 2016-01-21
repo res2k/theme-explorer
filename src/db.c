@@ -2401,6 +2401,44 @@ db_to_string_TMT_INTLIST(HTHEME theme, int part, int state, int prop, TCHAR* buf
     }
 }
 
+static void
+db_to_string_TMT_DISKSTREAM(HTHEME theme, int part, int state, int prop, TCHAR* buffer, DWORD bufsize)
+{
+    WCHAR theme_fn[MAX_PATH];
+    HANDLE hThemeFile;
+    void* pStream;
+    DWORD cbStream;
+
+    buffer[0] = _T('\0');
+    if (FAILED (GetCurrentThemeName (theme_fn, sizeof (theme_fn)/sizeof(theme_fn[0]), NULL, 0, NULL, 0)))
+    {
+        return;
+    }
+
+    hThemeFile = LoadLibraryExW (theme_fn, 0, LOAD_LIBRARY_AS_DATAFILE);
+    if (!hThemeFile) return;
+
+    if (SUCCEEDED (GetThemeStream  (theme, part, state, prop, &pStream, &cbStream, hThemeFile)))
+    {
+        _sntprintf(buffer, bufsize, _T("<diskstream %u bytes>"), (unsigned)cbStream);
+    }
+
+    FreeLibrary (hThemeFile);
+}
+
+static void
+db_to_string_TMT_STREAM(HTHEME theme, int part, int state, int prop, TCHAR* buffer, DWORD bufsize)
+{
+    void* pStream;
+    DWORD cbStream;
+
+    buffer[0] = _T('\0');
+    if (SUCCEEDED (GetThemeStream  (theme, part, state, prop, &pStream, &cbStream, NULL)))
+    {
+        _sntprintf(buffer, bufsize, _T("<stream %u bytes>"), (unsigned)cbStream);
+    }
+}
+
 
 static const db_type_t db_type_TMT_ENUM =       { 200,  _T("TMT_ENUM"),        _T("Enum"),        db_to_string_TMT_ENUM };
 static const db_type_t db_type_TMT_STRING =     { 201,  _T("TMT_STRING"),      _T("String"),      db_to_string_TMT_STRING };
@@ -2414,6 +2452,8 @@ static const db_type_t db_type_TMT_POSITION =   { 208,  _T("TMT_POSITION"),    _
 static const db_type_t db_type_TMT_RECT =       { 209,  _T("TMT_RECT"),        _T("Rect"),        db_to_string_TMT_RECT };
 static const db_type_t db_type_TMT_FONT =       { 210,  _T("TMT_FONT"),        _T("Font"),        db_to_string_TMT_FONT };
 static const db_type_t db_type_TMT_INTLIST =    { 211,  _T("TMT_INTLIST"),     _T("IntList"),     db_to_string_TMT_INTLIST };
+static const db_type_t db_type_TMT_DISKSTREAM = { 213,  _T("TMT_DISKSTREAM"),  _T("DiskStream"),  db_to_string_TMT_DISKSTREAM };
+static const db_type_t db_type_TMT_STREAM =     { 214,  _T("TMT_STREAM"),      _T("Stream"),      db_to_string_TMT_STREAM };
 
 #define DB_DEFINE_ENUM(id, name, display_name)       { &db_type_TMT_ENUM,     id, _T(#name), _T(#display_name) }
 #define DB_DEFINE_STRING(id, name, display_name)     { &db_type_TMT_STRING,   id, _T(#name), _T(#display_name) }
@@ -2427,6 +2467,8 @@ static const db_type_t db_type_TMT_INTLIST =    { 211,  _T("TMT_INTLIST"),     _
 #define DB_DEFINE_RECT(id, name, display_name)       { &db_type_TMT_RECT,     id, _T(#name), _T(#display_name) }
 #define DB_DEFINE_FONT(id, name, display_name)       { &db_type_TMT_FONT,     id, _T(#name), _T(#display_name) }
 #define DB_DEFINE_INTLIST(id, name, display_name)    { &db_type_TMT_INTLIST,  id, _T(#name), _T(#display_name) }
+#define DB_DEFINE_DISKSTREAM(id, name, display_name) { &db_type_TMT_DISKSTREAM,  id, _T(#name), _T(#display_name) }
+#define DB_DEFINE_STREAM(id, name, display_name)     { &db_type_TMT_STREAM,  id, _T(#name), _T(#display_name) }
 
 static const db_prop_t db_props_helper[] = {
     DB_DEFINE_ENUM(4001,  TMT_BGTYPE,               BgType),
@@ -2668,6 +2710,9 @@ static const db_prop_t db_props_helper[] = {
     DB_DEFINE_FONT(2601,  TMT_GLYPHFONT,         GlyphFont),
 
     DB_DEFINE_INTLIST(6000, TMT_TRANSITIONDURATIONS, TransitionDuration),
+
+    DB_DEFINE_DISKSTREAM(213, TMT_DISKSTREAM,   DiskStream),
+    DB_DEFINE_STREAM(214, TMT_STREAM,   Stream),
 };
 
 
