@@ -168,16 +168,22 @@ main_reset(HWND win, const db_class_t* cls, const db_part_t* part, const db_stat
     /* Reset theme preview */
     {
         HBITMAP bmp, prev_bitmap;
-        int i;
+        int i, bmp_id;
 
         for(i = IDC_MAIN_THEMEVIEW_FIRST; i <= IDC_MAIN_THEMEVIEW_LAST; i++)
             themeview_setup(GetDlgItem(win, i), cls->name, cls->subclass, part->id, state->id);
 
+        bmp_id = IDC_MAIN_BITMAP_FIRST;
         bmp = NULL;
         if(theme  &&  fn_GetThemeBitmap)
             fn_GetThemeBitmap(theme, part->id, state->id, TMT_DIBDATA, GBF_DIRECT, &bmp);
-        SendDlgItemMessage(win, IDC_MAIN_BITMAP_BKG, STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)bmp);
+        if (bmp)
+        {
+            SendDlgItemMessage (win, bmp_id, STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)bmp);
+            bmp_id++;
+        }
 
+        bmp = NULL;
         /* Stupid workaround. Seems there is a bug either in Windows headers
          * or GetThemeBitmap() implementation. Headers define TMT_GLYPHDIBDATA
          * as 8, but on Windows 7 it always fails. Instead it works for 3.
@@ -189,12 +195,24 @@ main_reset(HWND win, const db_class_t* cls, const db_part_t* part, const db_stat
             if(FAILED(hr))
                 fn_GetThemeBitmap(theme, part->id, state->id, TMT_GLYPHDIBDATA, GBF_DIRECT, &bmp);
         }
-        SendDlgItemMessage (win, IDC_MAIN_BITMAP_GLYPH, STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)bmp);
+        if (bmp)
+        {
+            SendDlgItemMessage (win, bmp_id, STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)bmp);
+            bmp_id++;
+        }
 
         bmp = get_atlas_image (theme, part->id, state->id);
-        prev_bitmap = SendDlgItemMessage(win, IDC_MAIN_BITMAP_ATLAS, STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)bmp);
-        if (prev_bitmap == last_atlas_bitmap) prev_bitmap = 0;
-        if (prev_bitmap) DeleteObject (prev_bitmap);
+        if (bmp)
+        {
+            SendDlgItemMessage (win, bmp_id, STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)bmp);
+            bmp_id++;
+        }
+
+        for (; bmp_id <= IDC_MAIN_BITMAP_LAST; bmp_id++)
+        {
+            SendDlgItemMessage (win, bmp_id, STM_SETIMAGE, IMAGE_BITMAP, 0);
+        }
+
         if (last_atlas_bitmap) DeleteObject (last_atlas_bitmap);
         last_atlas_bitmap = bmp;
     }
